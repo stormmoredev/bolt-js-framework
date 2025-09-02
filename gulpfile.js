@@ -15,7 +15,7 @@ function htmlToJs() {
     }))
     .on('end', function () {
       const output = `const templates = ${JSON.stringify(templates, null, 2)};`;
-      fs.writeFileSync('dst/templates.js', output);
+      fs.writeFileSync('dist/templates.js', output);
     });
 }
 
@@ -23,7 +23,7 @@ function framework(cb) {
   src('src/**/*.js')
     .pipe(concat('storm.js'))
     .pipe(terser())
-    .pipe(dest('dst'))
+    .pipe(dest('dist'))
     .pipe(dest('docs'));
   cb();
 }
