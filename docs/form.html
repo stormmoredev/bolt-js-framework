@@ -1,0 +1,107 @@
+<!DOCTYPE>
+<html lang="en">
+<head>
+    <title>Form</title>
+    <link rel="stylesheet" href="main.css">
+    <script type="text/javascript" src="storm.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1><a href="https://stormmore-com.github.io/StormJS-Framework/">StormJS Guide</a> - Form</h1>
+    </header>
+    <x-form-component>
+        <form method="post">
+            <table>
+                <tr>
+                    <td>First Name:</td>
+                    <td><input x-prop="name" type="text" name="firstname" /></td>
+                    <td x-prop="name"></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input x-prop="email" type="email" name="email" /></td>
+                    <td x-prop="email"></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input x-prop="password" type="password" name="password" /></td>
+                    <td x-prop="password"></td>
+                </tr>
+                <tr>
+                    <td>Do you like programming</td>
+                    <td><input type="checkbox" name="programming" value="1" /></td>
+                </tr>
+                <tr>
+                    <td>Gender</td>
+                    <td>
+                        <input type="radio" name="gender" value="m" /> Man
+                        <input type="radio" name="gender" value="w" /> Woman
+                    </td>
+                </tr>
+                <tr>
+                    <td>About yourself</td>
+                    <td>
+                        <textarea x-prop="about" name="about" rows="4" cols="50"></textarea>
+                    </td>
+                    <td x-prop="about"></td>
+                </tr>
+                <tr>
+                    <td>Profession</td>
+                    <td>
+                        <select name="options">
+                            <option value="">Select one</option>
+                            <option value="dev">Developer</option>
+                            <option value="tester">Tester</option>
+                            <option value="sm">Scrum Master</option>
+                            <option value="po">Product owner</option>
+                        </select>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Photo</td>
+                    <td><input type="file" name="photo"/></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <button x-click="print">Print</button>
+                        <button x-click="submit">Submit</button>
+                        <button x-click="submitAjax">Submit ajax</button>
+                    </td>
+                </tr>
+            </table>
+            <div id="form-result" style="margin-top:25px"></div>
+        </form>
+    </x-form-component>
+</div>
+<script type="text/javascript">
+    function FormComponent(self) {
+        self.print = (e) => {
+            e.preventDefault();
+            let formResult = self.find('#form-result');
+            formResult.setHtml('');
+            let formData = self.find('form').formData();
+            for (let [k, v] of formData) {
+                formResult.appendHtml("<div>" + k  + "  " +  v + "</div>");
+            }
+        }
+        self.submit = (e) => {
+            e.preventDefault();
+            self.find('form').submit();
+        }
+        self.submitAjax = (e) => {
+            e.preventDefault();
+            fetch("/form.html", {
+                method: "POST",
+                body: self.find('form').formData()
+            })
+        }
+    }
+    $(FormComponent);
+</script>
+</body>
+
+</html>

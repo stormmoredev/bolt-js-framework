@@ -1,0 +1,44 @@
+<!DOCTYPE>
+<html lang="en">
+<head>
+    <title>Inserting components as HTML</title>
+    <link rel="stylesheet" href="main.css">
+    <script type="text/javascript" src="storm.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1><a href="https://stormmore-com.github.io/StormJS-Framework/">StormJS Guide</a> - Inserting components as HTML</h1>
+    </header>
+    <x-main-component>
+        <div>Downloading data...</div>
+        <template>
+           <div id="items"></div>
+        </template>
+    </x-main-component>
+</div>
+<script type="text/javascript">
+    function MainComponent(self) {
+        setTimeout(() => self.onAjaxSuccess(), 1000);
+        self.onAjaxSuccess = () => {
+            self.showTemplate();
+            const html = `
+                <div>
+                    <x-item x-init='{"id": "First"}'><button x-click="click" >ShowID</button></x-item>
+                    <x-item x-init='{"id": "Second"}'><button x-click="click">ShowID</button></x-item>
+                    <x-item x-init='{"id": "Third"}'><button x-click="click">ShowID</button></x-item>
+                </div>
+            `
+            self.find("#items").appendHtml(html);
+        }
+    }
+    function Item(self) {
+        self.click = () => {
+            alert(self.id);
+        }
+    }
+    $([MainComponent, Item]);
+</script>
+</body>
+</html>

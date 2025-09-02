@@ -1,0 +1,33 @@
+<!DOCTYPE>
+<html lang="en">
+<head>
+    <title>Search and manipulating HTML manually</title>
+    <link rel="stylesheet" href="main.css">
+    <script type="text/javascript" src="storm.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><a href="https://stormmore-com.github.io/StormJS-Framework/">StormJS Guide</a> - Searching and manipulating HTML manually</h1>
+        </header>
+        <x-example-component>
+            <button class="click-me">Click</button>
+            <div style="margin:20px 0">This is clicks container. It's collecting your clicks. None of them will be forgotten.</div>
+            <div id="clicks"></div>
+        </x-example-component>
+    </div>
+    <script type="text/javascript">
+        function ExampleComponent(self) {
+            self.click = 1;
+            self.find(".click-me").on("click", function() {
+                let time = new Date().toLocaleTimeString();
+                let html = "<div> no.: " + self.click  + " time: " + time +  "</div>";
+                self.find('#clicks').appendHtml(html);
+                self.click++;
+            });
+        }
+        $(ExampleComponent);
+    </script>
+</body>
+</html>

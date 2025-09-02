@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Todo list</title>
+        <link rel="stylesheet" href="main.css">
+        <script type="text/javascript" src="storm.js"></script>
+        <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    </head>
+    <body>
+    <div class="container">
+        <header>
+            <h1><a href="https://stormmore-com.github.io/StormJS-Framework/">StormJS Guide</a> -  TODO list</h1>
+        </header>
+        <x-todo-form>
+            <input x-prop="todo" type="text" placeholder="Your todo" x-enter-pressed="add"/>
+            <button x-click="add">Add</button>
+        </x-todo-form>
+        <x-todo-list>
+            <div>Tasks todo: <span x-prop="left"></span> of <span x-prop="count"></span></span></div>
+            <div x-list="items"></div>
+        </x-todo-list>
+        <script type="text/javascript">
+            function TodoForm(self)  {
+                self.add = () => {
+                    if (!self.todo) {
+                        alert("TODO can not be empty.");
+                        return;
+                    }
+                    self.emit("new-todo", self.todo);
+                    self.todo = "";
+                }
+            }
+            function TodoList(self) {
+                self.items = new WatchList([$(TodoItem,  "My first TODO")]);
+                self.left = 1;
+                self.count = 1;
+
+                self.countTasks = () => {
+                    self.left = self.items.count(x => x.done == false);
+                    self.count = self.items.count();
+                }
+                self.on('new-todo', todo => {
+                    let item = $(TodoItem,  todo);
+                    self.items.add(item)
+                    self.countTasks()
+                });
+                self.on('del-todo', todo => {
+                    self.items.delete(x => x == todo)
+                    self.countTasks()
+                });
+                self.on('task-changed', self.countTasks);
+            }
+
+            function TodoItem(self, name) {
+                self.name = name;
+                self.done = false;
+                self.delete = () => self.emit('del-todo', self);
+                self.changed = () => {
+                    self.done = !self.done;
+                    self.emit('task-changed');
+                }
+                self.template =
+                    `<div class="todo-item">
+                        <input type="checkbox" x-change="changed" />
+                        <div x-prop="name" x-class="done:done"></div>
+                        <div x-click="delete" class="del">delete</div>
+                    </div>`;
+            }
+            $([TodoForm, TodoList, TodoItem]);
+        </script>
+    </div>
+</body>
+</html>

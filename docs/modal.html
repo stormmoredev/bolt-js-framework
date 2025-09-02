@@ -1,0 +1,63 @@
+<!DOCTYPE>
+<html lang="en">
+<head>
+    <title>Modal</title>
+    <link rel="stylesheet" href="main.css">
+    <script type="text/javascript" src="storm.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+</head>
+<style>
+
+</style>
+<body>
+    <div class="container">
+        <header>
+            <h1><a href="https://stormmore-com.github.io/StormJS-Framework/">StormJS Guide</a> - Modal</h1>
+        </header>
+        <x-delete-button x-init='{
+            "msg": "Are you sure ? Type in the name of the account you want to delete",
+            "account": "John"
+            }'>
+            <a href="/delete-user/32" class="delete-button">Delete</a>
+            <div>*Name of the account is 'John'</div>
+        </x-delete-button>
+    </div>
+    <script type="text/javascript">
+        function DeleteModal(self, href,msg, confirmation) {
+            self.account = null;
+            self.msg = msg;
+            self.close = () => {
+                self.remove();
+            }
+            self.delete = () => {
+                if (self.confirmation === confirmation) {
+                    alert("Successfully deleted!");
+                    self.remove();
+                } else {
+                    self.confirmation = "";
+                }
+            }
+            self.template = `
+                <div class="overlay" >
+                    <div class="modal">
+                        <div x-prop="msg" class="msg"></div>
+                        <input type="text" x-prop="confirmation" x-enter-pressed="delete" />
+                        <div class="form-buttons">
+                            <div class="form-submit cancel" x-click="close">Close</div>
+                            <div class="form-submit delete" x-click="delete">Delete</div>
+                        </div>
+                    </div>
+                </div>`
+        }
+        function DeleteButton(self) {
+            const link = self.find('a');
+            link.on('click', (e) => {
+                e.preventDefault();
+                let href = link.getAttribute('href');
+                self.append($(DeleteModal, href, self.msg, self.account))
+            });
+        }
+        $([DeleteButton, DeleteModal]);
+    </script>
+</body>
+</html>

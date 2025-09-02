@@ -1,0 +1,35 @@
+<!DOCTYPE>
+<html lang="en">
+<head>
+    <title>Nested components</title>
+    <link rel="stylesheet" href="main.css">
+    <script type="text/javascript" src="storm.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1><a href="https://stormmore-com.github.io/StormJS-Framework/">StormJS Guide</a> - Nested components</h1>
+    </header>
+    <x-outer-component>
+        <button x-click="click">Click outer</button>
+        <x-inner-component>
+            <button x-click="click">Click inner</button>
+        </x-inner-component>
+    </x-outer-component>
+</div>
+<script type="text/javascript">
+    function OuterComponent(self) {
+        self.click = () => {
+            alert("outer");
+        }
+    }
+    function InnerComponent(self) {
+        self.click = () => {
+            alert("inner");
+        }
+    }
+    $([OuterComponent, InnerComponent]);
+</script>
+</body>
+</html>

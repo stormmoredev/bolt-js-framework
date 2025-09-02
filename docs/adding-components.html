@@ -1,0 +1,34 @@
+<!DOCTYPE>
+<html lang="en" xmlns="">
+<head>
+    <title>Components</title>
+    <link rel="stylesheet" href="main.css">
+    <script type="text/javascript" src="storm.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1><a href="https://stormmore-com.github.io/StormJS-Framework/">StormJS Guide</a> - Adding component</h1>
+    </header>
+    <x-add-component>
+        <button x-click="add">Add new component</button>
+    </x-add-component>
+</div>
+</body>
+<script type="text/javascript">
+    function AddComponent(self) {
+        self.add = () => {
+            let item = $(Item)
+            self.append(item)
+        }
+    }
+    function Item(self) {
+        self.time = new Date().toLocaleString();
+        self.template = `
+            <div>Added at: ${self.time}</div>
+        `;
+    }
+    $([AddComponent, Item]);
+</script>
+</html>
