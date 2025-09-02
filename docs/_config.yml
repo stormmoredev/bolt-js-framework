@@ -1,3 +1,4 @@
 title: "StormJS Framework"
+theme: jekyll-theme-primer
 include:
   - docs
