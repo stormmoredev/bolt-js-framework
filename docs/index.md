@@ -12,22 +12,16 @@ Before you begin, it's important to understand the main elements you'll be worki
 * **StormElement**: A wrapper around a native HTML element. The original HTML element can be accessed through the `.ori` property.
 * **StormEvent**: A wrapper around a native browser event object. The original event is available via the `.ori` property.
 
-> **Note:**
-> Component tags must start with `x-`, e.g., `<x-users></x-users>`.
+**Note:** Component tags must start with `x-`, e.g., `<x-users></x-users>`.
 
-> **Note:**
-> Components must be registered with the framework using the `$` function. You can register a single component, `$(MyComponent)`, or an array of components, `$([MyComponent, MySubComponent])`.
+**Note:** Components must be registered with the framework using the `$` function. You can register a single component, `$(MyComponent)`, or an array of components, `$([MyComponent, MySubComponent])`.
 
-> **Note:**
-> New component instances are created using the same `$` function. If a component has been registered, calling `$(MyComponent)` will return a new instance of it.
+**Note:** New component instances are created using the same `$` function. If a component has been registered, calling `$(MyComponent)` will return a new instance of it.
 
-> **Note:**
-> Using template literals (backticks `` ` ``) for component templates is often more convenient than using `<template>` tags. IDEs like WebStorm and editors like VS Code (with the `lit-html` or similar extensions) provide excellent syntax highlighting for HTML inside these strings.
+**Note:** Using template literals (backticks `` ` ``) for component templates is often more convenient than using `<template>` tags. IDEs like WebStorm and editors like VS Code (with the `lit-html` or similar extensions) provide excellent syntax highlighting for HTML inside these strings.
 
-> **Note:**
-> If a function accepts element paths, those paths are handled by querySelector.
+**Note:** The querySelector method is used to find elements, so you can use standard CSS selectors.
 
-***
 
 ## Table of Contents
 
