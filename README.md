@@ -23,7 +23,7 @@ Simply include the source file:
 
 ```html
 <head>
-    <script type="text/javascript" src="storm.js" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stormmoredev/storm-js-framework/dist/storm.min.js" />
 </head>
 ```
 
@@ -34,7 +34,7 @@ Simply include the source file:
 <head>
     <title>Click counter</title>
     <link rel="stylesheet" href="main.css">
-    <script type="text/javascript" src="storm.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stormmoredev/storm-js-framework/dist/storm.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 </head>
 <body>
