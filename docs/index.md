@@ -51,8 +51,8 @@ This example demonstrates a basic component with a property (`counter`) and a me
 ```html
 <body>
 <x-first-component>
-    <div x-click="click" style="cursor: pointer; user-select: none">Click</div>
-    <div>Number of clicks: <span x-prop="counter"></span></div>
+    <button x-click="click">Click</button>
+    <div>Number of clicks {{counter}}</div>
 </x-first-component>
 </body>
 <script type="text/javascript">
@@ -125,7 +125,7 @@ To create a new instance of a registered component, use the same `$` function yo
     }
     function Item(self) {
         self.time = new Date().toLocaleString();
-        self.template = `<div>Added at: ${self.time}</div>`;
+        self.template = `<div>Added at: {{time}}</div>`;
     }
     $([AddComponent, Item]);
 </script>
@@ -147,7 +147,7 @@ As an alternative to template literals, you can define a component's HTML struct
         <button x-click="add">Add new component</button>
     </x-add-component>
     <template x-for="Item">
-        <div>Time: <span x-prop="time"></span></div>
+        <div>Time: {{time}}</div>
     </template>
 </body>
 <script type="text/javascript">
@@ -184,7 +184,7 @@ You can pass arguments when creating a new component instance. These arguments a
     }
     function Item(self, text) {
         self.text = text;
-        self.template = `<div>${self.text}</div>`;
+        self.template = `<div>{{text}}</div>`;
     }
     $([AddComponent, Item]);
 </script>
@@ -235,16 +235,17 @@ The `WatchList` is a reactive object for managing dynamic lists of components. W
 
 ```html
 <x-users-form>
-    <input x-prop="username" type="text" placeholder="Username" x-enter-pressed="add"/>
+    <input type="text" placeholder="Username" x-enter-pressed="add" value="{{username}}"/>
     <button x-click="add">Add</button>
     <div x-list="items"></div>
 </x-users-form>
 <script type="text/javascript">
     function UsernameComponent(self, username) {
         self.username = username;
-        self.template = `<div class="user-item" x-prop="username"></div>`;
+        self.template = `<div class="user-item">{{username}}</div>`;
     }
     function UsersForm(self)  {
+        self.username = "";
         self.items = new WatchList([$(UsernameComponent, "John")]);
         self.add = () => {
             if (!self.username) {
@@ -295,11 +296,11 @@ This example combines several concepts to build a classic TODO list application,
 
 ```html
 <x-todo-form>
-    <input x-prop="todo" type="text" placeholder="Your todo" x-enter-pressed="add"/>
+    <input type="text" placeholder="Your todo" value="{{todo}}" x-enter-pressed="add"/>
     <button x-click="add">Add</button>
 </x-todo-form>
 <x-todo-list>
-    <div>Tasks todo: <span x-prop="left"></span> of <span x-prop="count"></span></div>
+    <div>Tasks todo: {{left}} of {{count}}</div>
     <div x-list="items"></div>
 </x-todo-list>
 <script type="text/javascript">
@@ -314,12 +315,13 @@ This example combines several concepts to build a classic TODO list application,
         self.template = `
             <div class="todo-item">
                 <input type="checkbox" x-change="changed" />
-                <div x-prop="name" x-class="done:done"></div>
+                <div x-class="done:done">{{name}}</div>
                 <div x-click="delete" class="del">delete</div>
             </div>`;
     }
 
     function TodoForm(self)  {
+        self.todo = "";
         self.add = () => {
             if (!self.todo) {
                 alert("TODO can not be empty.");
@@ -368,7 +370,7 @@ You can show a loading message while waiting for asynchronous data. The componen
 <x-user-data>
     <div>Loading user data...</div>
     <template>
-        Hi, <span x-prop="username"></span>!
+        Hi, {{username}}!
     </template>
 </x-user-data>
 <script type="text/javascript">
@@ -464,14 +466,14 @@ Use the `self.find(selector)` method to get a `StormElement` wrapper for an elem
 
 ## 13\. Forms and Property Binding
 
-The `x-prop` directive provides two-way data binding for form inputs. The `self.find('form').formData()` method simplifies collecting form data for submission.
+The `{{ }}` directive provides two-way data binding for form inputs. The `self.find('form').formData()` method simplifies collecting form data for submission.
 
 ```html
 <x-form-component>
     <form>
-        First Name: <input x-prop="name" type="text" /> (Bound value: <span x-prop="name"></span>)
+        First Name: <input type="text" value="{{name}}" /> (Bound value: {{name}})
         <br/>
-        Email: <input x-prop="email" type="email" /> (Bound value: <span x-prop="email"></span>)
+        Email: <input type="email" value="{{email}}"/> (Bound value: {{email}})
         <br/>
         <button x-click="print">Print FormData</button>
     </form>
@@ -479,6 +481,7 @@ The `x-prop` directive provides two-way data binding for form inputs. The `self.
 </x-form-component>
 <script type="text/javascript">
     function FormComponent(self) {
+        self.name = self.email = self.password = self.about = "";
         self.print = (e) => {
             e.preventDefault();
             const formResult = self.find('#form-result');
@@ -511,7 +514,9 @@ This example shows how to create a reusable modal component that can be dynamica
     <a href="/delete-user/32" class="delete-button">Delete User 'John'</a>
 </x-delete-button>
 <script type="text/javascript">
-    function DeleteModal(self, href, msg, confirmation) {
+    function DeleteModal(self, href,msg, confirmation) {
+        self.confirmation = null;
+        self.account = null;
         self.msg = msg;
         self.close = () => {
             self.remove();
@@ -519,32 +524,29 @@ This example shows how to create a reusable modal component that can be dynamica
         self.delete = () => {
             if (self.confirmation === confirmation) {
                 alert("Successfully deleted!");
-                // window.location.href = href; // Uncomment to navigate on success
                 self.remove();
             } else {
-                alert("Confirmation text does not match.");
                 self.confirmation = "";
             }
         }
         self.template = `
-            <div class="overlay" x-click="close">
-                <div class="modal" x-click-stop> <div x-prop="msg" class="msg"></div>
-                    <input type="text" x-prop="confirmation" x-enter-pressed="delete" placeholder="Type '${confirmation}' to confirm" />
-                    <div class="form-buttons">
-                        <button class="cancel" x-click="close">Close</button>
-                        <button class="delete" x-click="delete">Delete</button>
+                <div class="overlay" >
+                    <div class="modal">
+                        <div class="msg">{{msg}}</div>
+                        <input type="text" value="{{confirmation}}" x-enter-pressed="delete" />
+                        <div class="form-buttons">
+                            <div class="form-submit cancel" x-click="close">Close</div>
+                            <div class="form-submit delete" x-click="delete">Delete</div>
+                        </div>
                     </div>
-                </div>
-            </div>`
+                </div>`
     }
-
     function DeleteButton(self) {
         const link = self.find('a');
         link.on('click', (e) => {
             e.preventDefault();
             let href = link.getAttribute('href');
-            // Append the modal to the body to ensure it's on top
-            document.body.append($(DeleteModal, href, self.msg, self.account).element.ori);
+            self.append($(DeleteModal, href, self.msg, self.account))
         });
     }
     $([DeleteButton, DeleteModal]);

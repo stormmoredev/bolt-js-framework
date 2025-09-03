@@ -32,7 +32,7 @@ class StormComponentInstantiator {
             }
             element.removeAttribute("x-init");
         }
-        component.element = element;
+        component.setElement(element);
         return component;
     }
 }

@@ -42,7 +42,7 @@ Simply include the source file:
     <header><h1><a href="/">StormJS Guide</a> - Modal</h1></header>
     <x-first-component>
         <button x-click="click">Click</button>
-        <div>Number of clicks <span x-prop="counter"></span></div>
+        <div>Number of clicks {{counter}}</div>
     </x-first-component>
     <script type="text/javascript">
         function FirstComponent(self) {

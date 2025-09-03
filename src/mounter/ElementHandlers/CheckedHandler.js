@@ -10,7 +10,9 @@ class CheckedHandler extends AttributeHandler{
                 component[propertyName] = e.ori.target.value;
             }
         });
-        component.addToBinding(propertyName, propertyName, element, this.onAction);
+        component.bindings.on(propertyName, () => {
+            this.onAction(component, element, propertyName);
+        });
         this.onAction(component, element, propertyName);
         element.removeAttribute('x-checked');
     }

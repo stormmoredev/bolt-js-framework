@@ -11,7 +11,6 @@ class WatchList {
 
     add(item) {
         this.items.push(item);
-        this.length++
         this.addCallback.forEach(callback => {
             callback(item)
         });

@@ -5,26 +5,12 @@ const tap = require('gulp-tap');
 const path = require('path');
 const fs = require('fs');
 
-function htmlToJs() {
-  const templates = {};
-  return src('templates/**/*.html')
-    .pipe(tap(function(file) {
-      const fileName = path.basename(file.path);
-      const content = file.contents.toString().replace(/`/g, '\\`');
-      templates[fileName] = content.replace(/\r?\n|\r/g, '');
-    }))
-    .on('end', function () {
-      const output = `const templates = ${JSON.stringify(templates, null, 2)};`;
-      fs.writeFileSync('dist/templates.js', output);
-    });
-}
 
 function framework(cb) {
   src('src/**/*.js')
     .pipe(concat('storm.js'))
     .pipe(terser())
     .pipe(dest('dist'))
-    .pipe(dest('docs'));
   cb();
 }
 
