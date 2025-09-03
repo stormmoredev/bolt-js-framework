@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <title>Watch list</title>
     <link rel="stylesheet" href="main.css">
-    <script type="text/javascript" src="storm.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stormmoredev/storm-js-framework/dist/storm.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1><a href="https://stormmore-com.github.io/StormJS-Framework/">StormJS Guide</a> - Watch list </h1>
+            <h1><a href="https://stormmoredev.github.io/storm-js-framework/">StormJS Guide</a> - Watch list </h1>
         </header>
         <x-users-form>
-            <input x-prop="username" type="text" placeholder="Username" x-enter-pressed="add"/>
+            <input  type="text" placeholder="Username" value="{{username}}" x-enter-pressed="add"/>
             <button x-click="add">Add</button>
             <div x-list="items"></div>
         </x-users-form>
@@ -25,10 +25,11 @@
             self.username = username;
             self.template =
                 `<div class="todo-item">
-                    <div x-prop="username"></div>
+                    <div>{{username}}</div>
                 </div>`;
         }
         function UsersForm(self) {
+            self.username = "";
             self.items = new WatchList([$(UsernameComponent, "John")]);
             self.add = () => {
                 if (!self.username) {

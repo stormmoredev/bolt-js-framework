@@ -3,31 +3,31 @@
 <head>
     <title>Form</title>
     <link rel="stylesheet" href="main.css">
-    <script type="text/javascript" src="storm.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stormmoredev/storm-js-framework/dist/storm.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 </head>
 <body>
 <div class="container">
     <header>
-        <h1><a href="https://stormmore-com.github.io/StormJS-Framework/">StormJS Guide</a> - Form</h1>
+        <h1><a href="https://stormmoredev.github.io/storm-js-framework/">StormJS Guide</a> - Form</h1>
     </header>
     <x-form-component>
         <form method="post">
             <table>
                 <tr>
                     <td>First Name:</td>
-                    <td><input x-prop="name" type="text" name="firstname" /></td>
-                    <td x-prop="name"></td>
+                    <td><input type="text" name="firstname" value="{{name}}" /></td>
+                    <td>{{name}}</td>
                 </tr>
                 <tr>
                     <td>Email:</td>
-                    <td><input x-prop="email" type="email" name="email" /></td>
-                    <td x-prop="email"></td>
+                    <td><input type="email" name="email" value="{{email}}"/></td>
+                    <td>{{email}}</td>
                 </tr>
                 <tr>
                     <td>Password:</td>
-                    <td><input x-prop="password" type="password" name="password" /></td>
-                    <td x-prop="password"></td>
+                    <td><input type="password" name="password" value="{{password}}"/></td>
+                    <td>{{password}}</td>
                 </tr>
                 <tr>
                     <td>Do you like programming</td>
@@ -43,9 +43,9 @@
                 <tr>
                     <td>About yourself</td>
                     <td>
-                        <textarea x-prop="about" name="about" rows="4" cols="50"></textarea>
+                        <textarea name="about" rows="4" cols="50">{{about}}</textarea>
                     </td>
-                    <td x-prop="about"></td>
+                    <td>{{about}}</td>
                 </tr>
                 <tr>
                     <td>Profession</td>
@@ -79,6 +79,7 @@
 </div>
 <script type="text/javascript">
     function FormComponent(self) {
+        self.name = self.email = self.password = self.about = "";
         self.print = (e) => {
             e.preventDefault();
             let formResult = self.find('#form-result');

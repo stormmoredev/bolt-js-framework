@@ -3,18 +3,18 @@
 <head>
     <title>Preloading data</title>
     <link rel="stylesheet" href="main.css">
-    <script type="text/javascript" src="storm.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stormmoredev/storm-js-framework/dist/storm.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1><a href="https://stormmore-com.github.io/StormJS-Framework/">StormJS Guide</a> - Preloading data</h1>
+            <h1><a href="https://stormmoredev.github.io/storm-js-framework/">StormJS Guide</a> - Preloading data</h1>
         </header>
         <x-user-data>
             <div>loading user data...</div>
             <template>
-                Hi <span x-prop="username"></span>
+                Hi {{username}}
             </template>
         </x-user-data>
     </div>

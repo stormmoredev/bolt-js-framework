@@ -1,23 +1,19 @@
 class StormComponent {
     static eventBindings = { }
-    toHtmlBindings = { }
-    fromHtmlBindings = { }
+    bindings
     componentName
     templateName
 
     constructor(componentName, templateName) {
         this.componentName = componentName;
         this.templateName = templateName;
+        this.bindings = new StormBindings(this);
     }
 
     set(target, prop, value, receiver) {
         let result = Reflect.set(...arguments);
         this[prop] = value;
-        if (this.toHtmlBindings.hasOwnProperty(prop)) {
-            for (const binding of this.toHtmlBindings[prop]) {
-                binding.action(this, binding.element, prop, binding.attributeValue);
-            }
-        }
+        this.bindings.componentPropertyChanged(prop);
         return result;
     }
 
@@ -31,6 +27,7 @@ class StormComponent {
         } else {
             this.element = new StormElement(element);
         }
+        this.bindings.bind()
     }
     isOnViewport() {
         const y = this.element.ori.getBoundingClientRect().top;
@@ -121,27 +118,6 @@ class StormComponent {
         });
     }
 
-    addToBinding(propertyName, attributeValue, element, action) {
-        if  (!this.toHtmlBindings.hasOwnProperty(propertyName)) {
-            this.toHtmlBindings[propertyName] = [];
-        }
-        this.toHtmlBindings[propertyName].push({
-            element: element,
-            attributeValue: attributeValue,
-            action: action
-        });
-    }
-
-    broadcastHtmlBindings(property, element) {
-        if (this.toHtmlBindings.hasOwnProperty(property)) {
-            for (const binding of this.toHtmlBindings[property]) {
-                if (binding.element.ori != element.ori) {
-                    binding.element.setValue(element.getValue());
-                }
-            }
-        }
-    }
-
     emit(name, data) {
         if (StormComponent.eventBindings[name]) {
             for(let callback of StormComponent.eventBindings[name]) {
@@ -199,6 +175,7 @@ class StormComponent {
             this.removeChildren();
             Mounter.mountComponentElement(this, element);
             this.element.ori.append(element.ori);
+            this.bindings.bind();
         }
     }
     /**
