@@ -14,8 +14,11 @@ class ConditionalHandler extends AttributeHandler {
 
     onIfChangeAction(component, element, expression) {
         const propertyValue = StormExpression.evaluate(expression, component);
-        if (!propertyValue) element.hide();
-        if (propertyValue) element.show();
+        if (propertyValue === true) {
+            element.show();
+        } else {
+            element.hide();
+        }
     }
 }
 (function() {

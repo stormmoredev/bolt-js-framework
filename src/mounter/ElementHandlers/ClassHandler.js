@@ -1,4 +1,4 @@
-class ClassHandler extends AttributeHandler{
+class ClassHandler extends AttributeHandler {
     handle(component, element) {
         if (!element.hasAttribute('x-class')) return;
         const attributeValue = element.getAttribute('x-class');

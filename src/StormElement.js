@@ -144,8 +144,6 @@ class StormElement {
     hide() {
         this.ori.style.display = 'none';
     }
-
-
     formData() {
         return new FormData(this.ori);
     }
@@ -178,27 +176,15 @@ class StormElement {
     }
     setValue(value) {
         const tagName = this.ori.tagName.toLowerCase();
-        if (tagName === 'input' || tagName === 'textarea') {
+        if (tagName === 'input' || tagName === 'textarea' || tagName === 'select') {
             this.ori.value = value;
-        }
-        if (tagName === 'img') {
-            this.ori.setAttribute('src', value);
-        }
-        else {
-            this.ori.innerText = value;
         }
         return this;
     }
     getValue() {
         const tagName = this.ori.tagName.toLowerCase();
-        if (tagName === 'input' || tagName === 'textarea') {
+        if (tagName === 'input' || tagName === 'textarea' || tagName === 'select') {
             return this.ori.value;
-        }
-        if (tagName === 'img') {
-            return this.ori.getAttribute('src');
-        }
-        else {
-            return this.ori.innerText.trim();
         }
     }
 
