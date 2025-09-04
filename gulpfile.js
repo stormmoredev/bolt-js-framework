@@ -11,6 +11,7 @@ function framework(cb) {
     .pipe(concat('storm.js'))
     .pipe(terser())
     .pipe(dest('dist'))
+    .pipe(dest('docs'))
   cb();
 }
 

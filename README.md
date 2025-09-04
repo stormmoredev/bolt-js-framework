@@ -23,7 +23,7 @@ Simply include the source file:
 
 ```html
 <head>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stormmoredev/storm-js-framework/dist/storm.min.js" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stormmoredev/storm-js-framework@latest/dist/storm.min.js" />
 </head>
 ```
 

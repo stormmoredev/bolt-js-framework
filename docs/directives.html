@@ -4,7 +4,7 @@
     <title>Directives</title>
     <title>Form</title>
     <link rel="stylesheet" href="main.css">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stormmoredev/storm-js-framework/dist/storm.min.js"></script>
+    <script type="text/javascript" src="storm.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 </head>
 <body>
@@ -13,27 +13,26 @@
             <h1><a href="https://stormmoredev.github.io/storm-js-framework/">StormJS Guide</a> - Directives</h1>
         </header>
         <x-directives-component>
-            <div x-class="isCheckboxChecked:checked">
-                background:
+            <div x-class="isCheckboxChecked: checked-style">
+                Toggle background:
                 <input type="checkbox" x-checked="isCheckboxChecked" />
-                <span x-if="isCheckboxChecked">Background set to lightblue color</span>
+                <span x-if="isCheckboxChecked">Background is now lightblue!</span>
             </div>
-            <div x-class="isRadioChecked:radio-checked">
-                background:
-                <input type="radio" name="mode" value="on" x-checked="radioValueChecked" x-change="radioChanged" /> on
-                <input type="radio" name="mode" value="off" x-checked="radioValueChecked" x-change="radioChanged" /> off
-                <span x-if="isRadioChecked" style="margin-left:5px"> Radio is checked </span>
+
+            <hr/>
+
+            <div x-class="radioValue == 'on': radio-checked-style">
+                Turn radio background on/off:
+                <input type="radio" name="mode" value="on" x-checked="radioValue" /> on
+                <input type="radio" name="mode" value="off" x-checked="radioValue" /> off
+                <span x-if="radioValue == 'on'" style="margin-left:5px">Radio background is ON.</span>
             </div>
         </x-directives-component>
     </div>
     <script type="text/javascript">
         function DirectivesComponent(self) {
             self.isCheckboxChecked = true;
-            self.isRadioChecked = true;
-            self.radioValueChecked = 'on'
-            self.radioChanged = (e) => {
-                self.isRadioChecked = e.source.getValue() === 'on';
-            }
+            self.radioValue = 'on'
         }
         $(DirectivesComponent);
     </script>
