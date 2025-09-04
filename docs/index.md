@@ -20,7 +20,7 @@ Before you begin, it's important to understand the main elements you'll be worki
 
 **Note:** Using template literals (backticks `` ` ``) for component templates is often more convenient than using `<template>` tags. IDEs like WebStorm and editors like VS Code (with the `lit-html` or similar extensions) provide excellent syntax highlighting for HTML inside these strings.
 
-**Note:** The querySelector method is used to find elements, so you can use standard CSS selectors.
+**Note:** All element queries are handled internally by querySelector(), ensuring full support for CSS selectors.
 
 
 ## Table of Contents
@@ -557,47 +557,55 @@ This example shows how to create a reusable modal component that can be dynamica
 
 -----
 
+
 <a name="15-directives"></a>
 
-## 15\. Directives
+## 15. Directives
 
-Directives are special HTML attributes that provide declarative reactivity. The most common ones are:
+Directives are special HTML attributes that provide declarative reactivity, allowing you to manipulate the DOM based on your component's state. The most common directives are:
 
-* **`x-if`**: Conditionally renders an element.
-* **`x-class`**: Toggles classes on an element based on a property's truthiness.
-* **`x-enter-pressed`**: Calls a method when the Enter key is pressed in an input field.
-* **`x-checked`**: Provides two-way binding for checkbox and radio inputs.
+* **`x-if="expression"`**: Conditionally renders an element. The element is added or removed from the DOM based on whether the expression is truthy.
+* **`x-class="expression: 'className'"`**: Toggles CSS classes on an element.
+* **`x-enter-pressed="methodName"`**: Calls a component method when the "Enter" key is pressed inside an input field.
+* **`x-checked="propertyName"`**: Provides two-way data binding for checkbox and radio inputs.
 
-<!-- end list -->
+### Using Expressions in Directives
+
+A key feature of directives like **`x-if`** and **`x-class`** is their ability to evaluate JavaScript-like expressions. This allows you to create dynamic and responsive components based on your component's state. You are not limited to simple property names; you can use comparisons, logical operators, and property access to control your template's structure and styling.
+
+For example, you can use expressions like `items.length > 0` or `user.role == 'admin' && user.active`. This same powerful syntax works for both conditionally rendering elements with `x-if` and for applying classes with `x-class`.
+
+### Example
+
+The example below demonstrates how to use `x-if`, `x-class`, and `x-checked` to dynamically change styles and content.
 
 ```html
+<style>
+    .checked-style { background-color: lightblue; padding: 5px; margin-bottom: 10px; }
+    .radio-checked-style { background-color: lightcoral; padding: 5px; }
+</style>
 <x-directives-component>
-    <div x-class="isCheckboxChecked:checked">
-        background:
+    <div x-class="isCheckboxChecked: checked-style">
+        Toggle background:
         <input type="checkbox" x-checked="isCheckboxChecked" />
-        <span x-if="isCheckboxChecked">Background set to lightblue color</span>
+        <span x-if="isCheckboxChecked">Background is now lightblue!</span>
     </div>
-    <div x-class="isRadioChecked:radio-checked">
-        background:
-        <input type="radio" name="mode" value="on" x-checked="radioValueChecked" x-change="radioChanged" /> on
-        <input type="radio" name="mode" value="off" x-checked="radioValueChecked" x-change="radioChanged" /> off
-        <span x-if="isRadioChecked" style="margin-left:5px"> Radio is checked </span>
+    <div x-class="radioValue == 'on': radio-checked-style">
+        Turn radio background on/off:
+        <input type="radio" name="mode" value="on" x-checked="radioValue" /> on
+        <input type="radio" name="mode" value="off" x-checked="radioValue" /> off
+        <span x-if="radioValue == 'on'" style="margin-left:5px">Radio background is ON.</span>
     </div>
 </x-directives-component>
-<style>
-    .checked-style { background-color: lightblue; padding: 5px; }
-</style>
+</div>
 <script type="text/javascript">
     function DirectivesComponent(self) {
         self.isCheckboxChecked = true;
-        self.isRadioChecked = true;
-        self.radioValueChecked = 'on'
-        self.radioChanged = (e) => {
-            self.isRadioChecked = e.source.getValue() === 'on';
-        }
+        self.radioValue = 'on'
     }
     $(DirectivesComponent);
 </script>
 ```
 
 [Working example](https://stormmoredev.github.io/storm-js-framework/directives.html)
+

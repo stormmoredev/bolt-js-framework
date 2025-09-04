@@ -33,10 +33,10 @@ x-sender-component button{
 /*
     Directives
  */
-.checked {
+.checked-style {
     background-color: lightblue;
 }
-.radio-checked {
+.radio-checked-style {
     background-color: beige;
 }
 

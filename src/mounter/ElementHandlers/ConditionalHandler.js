@@ -1,18 +1,19 @@
 class ConditionalHandler extends AttributeHandler {
     handle(component, element) {
         if (element.hasAttribute('x-if')) {
-            const propertyName = element.getAttribute('x-if');
-            this.onIfChangeAction(component, element, propertyName);
-            component.bindings.on(propertyName, () => {
-                this.onIfChangeAction(component, element, propertyName);
-            });
+            const expression = element.getAttribute('x-if');
+            this.onIfChangeAction(component, element, expression);
+            for(let prop of StormExpression.getExpressionMembers(expression)) {
+                component.bindings.on(prop, () => {
+                    this.onIfChangeAction(component, element, expression);
+                });
+            }
         }
         element.removeAttribute('x-if');
-        element.removeAttribute('x-if-not');
     }
 
-    onIfChangeAction(component, element, propertyName) {
-        const propertyValue = component[propertyName];
+    onIfChangeAction(component, element, expression) {
+        const propertyValue = StormExpression.evaluate(expression, component);
         if (!propertyValue) element.hide();
         if (propertyValue) element.show();
     }
