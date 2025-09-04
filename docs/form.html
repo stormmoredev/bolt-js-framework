@@ -31,14 +31,16 @@
                 </tr>
                 <tr>
                     <td>Do you like programming</td>
-                    <td><input type="checkbox" name="programming" value="1" /></td>
+                    <td><input type="checkbox" name="programming" value="1" x-checked="programming" /></td>
+                    <td>{{programming}}</td>
                 </tr>
                 <tr>
                     <td>Gender</td>
                     <td>
-                        <input type="radio" name="gender" value="m" /> Man
-                        <input type="radio" name="gender" value="w" /> Woman
+                        <input type="radio" name="gender" value="m" x-checked="gender" /> Man
+                        <input type="radio" name="gender" value="w" x-checked="gender" /> Woman
                     </td>
+                    <td><span x-if="gender != null">{{gender}}</span></td>
                 </tr>
                 <tr>
                     <td>About yourself</td>
@@ -50,7 +52,7 @@
                 <tr>
                     <td>Profession</td>
                     <td>
-                        <select name="options">
+                        <select name="options" x-selected="role">
                             <option value="">Select one</option>
                             <option value="dev">Developer</option>
                             <option value="tester">Tester</option>
@@ -58,7 +60,7 @@
                             <option value="po">Product owner</option>
                         </select>
                     </td>
-                    <td></td>
+                    <td>{{role}}</td>
                 </tr>
                 <tr>
                     <td>Photo</td>
@@ -80,6 +82,9 @@
 <script type="text/javascript">
     function FormComponent(self) {
         self.name = self.email = self.password = self.about = "";
+        self.role = "dev";
+        self.gender =  null;
+        self.programming = false;
         self.print = (e) => {
             e.preventDefault();
             let formResult = self.find('#form-result');
