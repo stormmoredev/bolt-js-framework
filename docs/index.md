@@ -1,7 +1,5 @@
 
------
 
-# Guide
 
 ## Getting Started: Core Concepts
 
