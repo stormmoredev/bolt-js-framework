@@ -1,4 +1,5 @@
-title: "StormJS Framework"
+title: "BoltJS Framework"
+name: "BoltJS Framwork"
 theme: jekyll-theme-primer
 include:
   - docs
