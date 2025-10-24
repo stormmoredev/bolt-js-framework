@@ -1,9 +1,9 @@
-# What is StormJS Framework?
-StormJS is a simple tool for building modern web applications.  
+# What is BoltJS Framework?
+BoltJS is a simple tool for building modern web applications.  
 It’s no harder to learn than jQuery and doesn’t require any additional tools.
 
 ## How is it different from other frameworks?
-StormJS was created so that anyone familiar with JavaScript can build applications without the need for extra backend or frontend tooling.  
+BoltJS was created so that anyone familiar with JavaScript can build applications without the need for extra backend or frontend tooling.  
 It’s small, yet powerful and complete.
 
 * Everything you need is in a single JavaScript file (~20KB).
@@ -39,7 +39,7 @@ Simply include the source file:
 </head>
 <body>
 <div class="container">
-    <header><h1><a href="/">StormJS Guide</a> - Modal</h1></header>
+    <header><h1><a href="/">BoltJS Guide</a> - Modal</h1></header>
     <x-first-component>
         <button x-click="click">Click</button>
         <div>Number of clicks {{counter}}</div>
@@ -59,7 +59,7 @@ Simply include the source file:
 ```
 
 ## Getting Started
-The best way to learn StormJS is by going through the guide.  
+The best way to learn BoltJS is by going through the guide.  
 It covers all the common use cases for modern web applications.
 
 👉 [Guide & Examples](https://stormmoredev.github.io/storm-js-framework/)
