@@ -66,7 +66,7 @@ This example demonstrates a basic component with a property (`counter`) and a me
 
 The component instance is the `self` object passed as the first argument to your factory function. After defining the component, you must register it using `$(FirstComponent)`.
 
-[Working example](https://stormmoredev.github.io/storm-js-framework/click-counter.html)
+[Working example](https://stormmoredev.github.io/bolt-js-framework/click-counter.html)
 
 -----
 
@@ -98,7 +98,7 @@ Components can be easily nested within each other. Each component manages its ow
 </script>
 ```
 
-[Working example](https://stormmoredev.github.io/storm-js-framework/nested-components.html)
+[Working example](https://stormmoredev.github.io/bolt-js-framework/nested-components.html)
 
 -----
 
@@ -129,7 +129,7 @@ To create a new instance of a registered component, use the same `$` function yo
 </script>
 ```
 
-[Working example](https://stormmoredev.github.io/storm-js-framework/adding-components.html)
+[Working example](https://stormmoredev.github.io/bolt-js-framework/adding-components.html)
 
 -----
 
@@ -161,7 +161,7 @@ As an alternative to template literals, you can define a component's HTML struct
     $([AddComponent, Item]);
 </script>
 ```
-[Working example](https://stormmoredev.github.io/storm-js-framework/adding-components-template.html)
+[Working example](https://stormmoredev.github.io/bolt-js-framework/adding-components-template.html)
 
 -----
 
@@ -221,7 +221,7 @@ The framework provides a simple event system for communication. Use `self.emit()
 </script>
 ```
 
-[Working example](https://stormmoredev.github.io/storm-js-framework/communication.html)
+[Working example](https://stormmoredev.github.io/bolt-js-framework/communication.html)
 
 -----
 
@@ -257,7 +257,7 @@ The `WatchList` is a reactive object for managing dynamic lists of components. W
     $([UsersForm, UsernameComponent]);
 </script>
 ```
-[Working example](https://stormmoredev.github.io/storm-js-framework/communication.html)
+[Working example](https://stormmoredev.github.io/bolt-js-framework/communication.html)
 
 -----
 
@@ -282,7 +282,7 @@ You can initialize a component's data directly from an HTML attribute using `x-i
 </script>
 ```
 
-[Working example](https://stormmoredev.github.io/storm-js-framework/initializing-component-from-html.html)
+[Working example](https://stormmoredev.github.io/bolt-js-framework/initializing-component-from-html.html)
 
 -----
 
@@ -354,7 +354,7 @@ This example combines several concepts to build a classic TODO list application,
 </script>
 ```
 
-[Working example](https://stormmoredev.github.io/storm-js-framework/todo.html)
+[Working example](https://stormmoredev.github.io/bolt-js-framework/todo.html)
 
 -----
 
@@ -386,7 +386,7 @@ You can show a loading message while waiting for asynchronous data. The componen
 </script>
 ```
 
-[Working example](https://stormmoredev.github.io/storm-js-framework/preloading-data.html)
+[Working example](https://stormmoredev.github.io/bolt-js-framework/preloading-data.html)
 
 -----
 
@@ -427,7 +427,7 @@ You can fetch HTML containing new components from a server and inject it into th
 </script>
 ```
 
-[Working example](https://stormmoredev.github.io/storm-js-framework/inserting-components-as-html.html)
+[Working example](https://stormmoredev.github.io/bolt-js-framework/inserting-components-as-html.html)
 
 -----
 
@@ -456,7 +456,7 @@ Use the `self.find(selector)` method to get a `BoltElement` wrapper for an eleme
 </script>
 ```
 
-[Working example](https://stormmoredev.github.io/storm-js-framework/manipulating-html.html)
+[Working example](https://stormmoredev.github.io/bolt-js-framework/manipulating-html.html)
 
 -----
 
@@ -494,7 +494,7 @@ The `{{ }}` directive provides two-way data binding for form inputs. The `self.f
 </script>
 ```
 
-[Working example](https://stormmoredev.github.io/storm-js-framework/form.html)
+[Working example](https://stormmoredev.github.io/bolt-js-framework/form.html)
 
 -----
 
@@ -551,7 +551,7 @@ This example shows how to create a reusable modal component that can be dynamica
 </script>
 ```
 
-[Working example](https://stormmoredev.github.io/storm-js-framework/modal.html)
+[Working example](https://stormmoredev.github.io/bolt-js-framework/modal.html)
 
 -----
 
@@ -605,5 +605,5 @@ The example below demonstrates how to use `x-if`, `x-class`, and `x-checked` to 
 </script>
 ```
 
-[Working example](https://stormmoredev.github.io/storm-js-framework/directives.html)
+[Working example](https://stormmoredev.github.io/bolt-js-framework/directives.html)
 
