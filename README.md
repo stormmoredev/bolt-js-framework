@@ -23,7 +23,7 @@ Simply include the source file:
 
 ```html
 <head>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stormmoredev/storm-js-framework@latest/dist/storm.min.js" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stormmoredev/bolt-js-framework@latest/dist/bolt.min.js" />
 </head>
 ```
 
@@ -34,7 +34,7 @@ Simply include the source file:
 <head>
     <title>Click counter</title>
     <link rel="stylesheet" href="main.css">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stormmoredev/storm-js-framework/dist/storm.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stormmoredev/bolt-js-framework/dist/bolt.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 </head>
 <body>
@@ -62,9 +62,9 @@ Simply include the source file:
 The best way to learn BoltJS is by going through the guide.  
 It covers all the common use cases for modern web applications.
 
-👉 [Guide & Examples](https://stormmoredev.github.io/storm-js-framework/)
+👉 [Guide & Examples](https://stormmoredev.github.io/bolt-js-framework/)
 
 ## Documentation
 Before diving into the documentation, make sure to read the guide first.
 
-👉 [Documentation](https://stormmoredev.github.io/storm-js-framework/docs)  
+👉 [Documentation](https://stormmoredev.github.io/bolt-js-framework/docs)  

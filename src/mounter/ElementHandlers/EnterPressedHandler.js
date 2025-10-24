@@ -21,5 +21,5 @@ class EnterPressedHandler extends AttributeHandler{
 }
 
 (function() {
-    StormElementHandler.handlers.push(new EnterPressedHandler());
+    BoltElementHandler.handlers.push(new EnterPressedHandler());
 })();

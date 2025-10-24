@@ -7,8 +7,8 @@ Before you begin, it's important to understand the main elements you'll be worki
 
 * **Factory Function**: This is the function you write to define a component's behavior and properties. It receives the component instance as its first argument.
 * **Component (`self`)**: The first argument of the factory function, conventionally named `self`. This object is the actual component instance, analogous to `this` in class-based systems. All your data and methods will be attached to it.
-* **StormElement**: A wrapper around a native HTML element. The original HTML element can be accessed through the `.ori` property.
-* **StormEvent**: A wrapper around a native browser event object. The original event is available via the `.ori` property.
+* **BoltElement**: A wrapper around a native HTML element. The original HTML element can be accessed through the `.ori` property.
+* **BoltEvent**: A wrapper around a native browser event object. The original event is available via the `.ori` property.
 
 **Note:** Component tags must start with `x-`, e.g., `<x-users></x-users>`.
 
@@ -16,7 +16,7 @@ Before you begin, it's important to understand the main elements you'll be worki
 
 **Note:** New component instances are created using the same `$` function. If a component has been registered, calling `$(MyComponent)` will return a new instance of it.
 
-**Note:** Using template literals (backticks `` ` ``) for component templates is often more convenient than using `<template>` tags. IDEs like WebStorm and editors like VS Code (with the `lit-html` or similar extensions) provide excellent syntax highlighting for HTML inside these strings.
+**Note:** Using template literals (backticks `` ` ``) for component templates is often more convenient than using `<template>` tags. IDEs like WebBolt and editors like VS Code (with the `lit-html` or similar extensions) provide excellent syntax highlighting for HTML inside these strings.
 
 **Note:** All element queries are handled internally by querySelector(), ensuring full support for CSS selectors.
 
@@ -435,7 +435,7 @@ You can fetch HTML containing new components from a server and inject it into th
 
 ## 12\. Finding and Manipulating HTML Elements
 
-Use the `self.find(selector)` method to get a `StormElement` wrapper for an element within your component's scope. This allows you to attach event listeners or manipulate the element directly.
+Use the `self.find(selector)` method to get a `BoltElement` wrapper for an element within your component's scope. This allows you to attach event listeners or manipulate the element directly.
 
 ```html
 <x-example-component>

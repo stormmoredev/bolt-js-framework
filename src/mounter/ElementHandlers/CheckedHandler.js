@@ -30,5 +30,5 @@ class CheckedHandler extends AttributeHandler{
 
 
 (function() {
-    StormElementHandler.handlers.push(new CheckedHandler());
+    BoltElementHandler.handlers.push(new CheckedHandler());
 })();

@@ -111,5 +111,5 @@ class GenericEventHandler extends AttributeHandler {
 }
 
 (function() {
-    StormElementHandler.handlers.push(new GenericEventHandler());
+    BoltElementHandler.handlers.push(new GenericEventHandler());
 })();

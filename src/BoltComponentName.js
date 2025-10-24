@@ -1,4 +1,4 @@
-class StormComponentName {
+class BoltComponentName {
     static getComponentName(element) {
         let tagName = element.ori.tagName.toLowerCase();
         let items = tagName.split('-').slice(1);

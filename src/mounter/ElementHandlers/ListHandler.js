@@ -29,5 +29,5 @@ class ListHandler extends AttributeHandler{
 }
 
 (function() {
-    StormElementHandler.handlers.push(new ListHandler());
+    BoltElementHandler.handlers.push(new ListHandler());
 })();

@@ -1,14 +1,14 @@
-class StormExpression {
+class BoltExpression {
     static evaluate(expression, data) {
-        let tokens = StormTokenizer.tokenize(expression);
-        let parser = new StormParser(tokens);
+        let tokens = BoltTokenizer.tokenize(expression);
+        let parser = new BoltParser(tokens);
         let ast = parser.parse();
         return evaluate(ast, data);
     }
 
     static getExpressionMembers(expression) {
-        let tokens = StormTokenizer.tokenize(expression);
-        let parser = new StormParser(tokens);
+        let tokens = BoltTokenizer.tokenize(expression);
+        let parser = new BoltParser(tokens);
         let ast = parser.parse();
         return this.collectBaseIdentifiers(ast);
     }
@@ -42,7 +42,7 @@ class StormExpression {
     }
 }
 
-class StormTokenizer {
+class BoltTokenizer {
     static tokenize(input) {
         const regex = /\s*([A-Za-z_]\w*|\d+|'[^']*'|"[^"]*"|==|!=|>=|<=|&&|\|\||[=><().])\s*/g;
         let tokens = [];
@@ -54,7 +54,7 @@ class StormTokenizer {
     }
 }
 
-class StormParser {
+class BoltParser {
     i = 0;
     tokens = [];
 

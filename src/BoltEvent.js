@@ -1,10 +1,10 @@
-class StormEvent {
+class BoltEvent {
     constructor(event) {
         this.ori = event;
     }
     stop() { this.ori.stopPropagation(); }
 
-    target() { return new StormElement(this.ori.target); }
+    target() { return new BoltElement(this.ori.target); }
 
     preventDefault() {
         this.ori.preventDefault();

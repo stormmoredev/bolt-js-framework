@@ -3,13 +3,13 @@
 
 # Documentation
 
-## StormComponent
+## BoltComponent
 
-This class represents a component in the Storm framework.
+This class represents a component in the Bolt framework.
 
 ### Properties
 
-* `element`: The DOM element of the component, of type `StormElement`.
+* `element`: The DOM element of the component, of type `BoltElement`.
 
 ### Methods
 
@@ -29,7 +29,7 @@ This class represents a component in the Storm framework.
 * `exists(path)`: Checks if an element specified by the path exists within the component.
 * `find(path)`: Finds a single element within the component matching the given path.
 * `findAll(path)`: Finds all elements within the component that match the given path.
-* `document()`: Returns the `document` object wrapped in a `StormElement`.
+* `document()`: Returns the `document` object wrapped in a `BoltElement`.
 * `remove()`: Removes the entire component from the DOM.
 * `emit(name, data)`: Emits an event with a given name and data.
 * `on(name, handler)`: Sets a handler function to catch an event with a given name.
@@ -40,7 +40,7 @@ This class represents a component in the Storm framework.
 
 -----
 
-## StormElement
+## BoltElement
 
 This class is a wrapper for a standard DOM element, providing additional helper methods.
 
@@ -95,8 +95,8 @@ This class is a wrapper for a standard DOM element, providing additional helper 
 * `isChecked()`: Checks if a checkbox or radio button is checked.
 * `tag()`: Returns the tag name of the element.
 * `count()`: Returns the number of child elements.
-* `find(path)`: Finds the first descendant element matching the selector and returns it as a `StormElement`.
-* `findAll(path)`: Finds all descendant elements matching the selector and returns them as an array of `StormElement` objects.
+* `find(path)`: Finds the first descendant element matching the selector and returns it as a `BoltElement`.
+* `findAll(path)`: Finds all descendant elements matching the selector and returns them as an array of `BoltElement` objects.
 * `index()`: Returns the element's index among its siblings.
 * `remove()`: Removes the element from the DOM.
 * `closest(path)`: Finds the nearest ancestor element that matches the selector.
@@ -109,7 +109,7 @@ This class is a wrapper for a standard DOM element, providing additional helper 
 
 -----
 
-## StormEvent
+## BoltEvent
 
 A wrapper for a native browser event object.
 
@@ -120,7 +120,7 @@ A wrapper for a native browser event object.
 ### Methods
 
 * `stop()`: Stops the event's propagation.
-* `target()`: Returns the event's target as a `StormElement`.
+* `target()`: Returns the event's target as a `BoltElement`.
 * `preventDefault()`: Prevents the default action of the event.
 * `preventWhenKeyIsPressed(keyCode)`: Prevents the default action only if a specific key is pressed.
 * `isKeyPressed(key)`: Checks if a specific key is pressed. The `key` can be a string or an integer key code.

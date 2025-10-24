@@ -1,4 +1,4 @@
-class StormComponent {
+class BoltComponent {
     static eventBindings = { }
     bindings
     componentName
@@ -7,7 +7,7 @@ class StormComponent {
     constructor(componentName, templateName) {
         this.componentName = componentName;
         this.templateName = templateName;
-        this.bindings = new StormBindings(this);
+        this.bindings = new BoltBindings(this);
     }
 
     set(target, prop, value, receiver) {
@@ -22,10 +22,10 @@ class StormComponent {
     }
 
     setElement(element) {
-        if (element instanceof StormElement) {
+        if (element instanceof BoltElement) {
             this.element = element;
         } else {
-            this.element = new StormElement(element);
+            this.element = new BoltElement(element);
         }
         this.bindings.bind()
     }
@@ -97,10 +97,10 @@ class StormComponent {
         return this.find(path) != null;
     }
     findAll(path) {
-        return StormComponentFinder.findAttributes(this.element, path);
+        return BoltComponentFinder.findAttributes(this.element, path);
     }
     document() {
-        return new StormElement(document);
+        return new BoltElement(document);
     }
     find(path) {
         return this.element.find(path);
@@ -119,18 +119,18 @@ class StormComponent {
     }
 
     emit(name, data) {
-        if (StormComponent.eventBindings[name]) {
-            for(let callback of StormComponent.eventBindings[name]) {
+        if (BoltComponent.eventBindings[name]) {
+            for(let callback of BoltComponent.eventBindings[name]) {
                 callback(data);
             }
         }
     }
 
     on(name, callback) {
-        if (!StormComponent.eventBindings.hasOwnProperty(name)) {
-            StormComponent.eventBindings[name] = [];
+        if (!BoltComponent.eventBindings.hasOwnProperty(name)) {
+            BoltComponent.eventBindings[name] = [];
         }
-        StormComponent.eventBindings[name].push(callback);
+        BoltComponent.eventBindings[name].push(callback);
     }
 
     removeChildren() {
@@ -171,7 +171,7 @@ class StormComponent {
     showTemplate() {
         let templateElement = this.element.find('template');
         if (templateElement) {
-            let element =  new StormElement(templateElement.ori.content.cloneNode(true));
+            let element =  new BoltElement(templateElement.ori.content.cloneNode(true));
             this.removeChildren();
             Mounter.mountComponentElement(this, element);
             this.element.ori.append(element.ori);

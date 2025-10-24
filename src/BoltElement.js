@@ -1,4 +1,4 @@
-class StormElement {
+class BoltElement {
     constructor(htmlElement) {
         this.ori = htmlElement;
     }
@@ -52,7 +52,7 @@ class StormElement {
         this.addEventListener(eventName, listener);
     }
     addEventListener(eventName, listener) {
-        this.ori.addEventListener(eventName, e => { listener(new StormEvent(e), this) });
+        this.ori.addEventListener(eventName, e => { listener(new BoltEvent(e), this) });
         return this;
     }
     addEventListenerOn(eventName, path, listener) {
@@ -214,13 +214,13 @@ class StormElement {
         const htmlElement = this.ori.querySelector(path);
         if (htmlElement == null) return;
 
-        return new StormElement(htmlElement);
+        return new BoltElement(htmlElement);
     }
     findAll(path) {
         const elements = [];
         const htmlElements = this.ori.querySelectorAll(path);
         htmlElements.forEach((htmlElement) => {
-            elements.push(new StormElement(htmlElement));
+            elements.push(new BoltElement(htmlElement));
         });
         return elements;
     }
@@ -233,19 +233,19 @@ class StormElement {
         this.ori.remove();
     }
     closest(path) {
-        return new StormElement(this.ori.closest(path));
+        return new BoltElement(this.ori.closest(path));
     }
     parent() {
-        return new StormElement(this.ori.parentElement);
+        return new BoltElement(this.ori.parentElement);
     }
     prev() {
         if (this.ori.previousElementSibling)
-            return new StormElement(this.ori.previousElementSibling);
+            return new BoltElement(this.ori.previousElementSibling);
         return null;
     }
     next() {
         if (this.ori.nextElementSibling)
-            return new StormElement(this.ori.nextElementSibling);
+            return new BoltElement(this.ori.nextElementSibling);
         return null;
     }
     setHtml(html) {
@@ -257,8 +257,8 @@ class StormElement {
     }
     appendHtml(html) {
         const el = document.createRange().createContextualFragment(html);
-        let componentElements = StormComponentFinder.find(el);
-        StormComponentInstantiator.instantiateAll(componentElements);
+        let componentElements = BoltComponentFinder.find(el);
+        BoltComponentInstantiator.instantiateAll(componentElements);
         this.ori.append(el);
     }
 }

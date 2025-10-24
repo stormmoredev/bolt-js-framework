@@ -1,4 +1,4 @@
-class StormBindings {
+class BoltBindings {
     bindings = [];
     onChangeListeners = {};
 

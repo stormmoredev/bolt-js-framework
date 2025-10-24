@@ -8,7 +8,7 @@ const fs = require('fs');
 
 function framework(cb) {
   src('src/**/*.js')
-    .pipe(concat('storm.js'))
+    .pipe(concat('bolt.js'))
     .pipe(terser())
     .pipe(dest('dist'))
     .pipe(dest('docs'))

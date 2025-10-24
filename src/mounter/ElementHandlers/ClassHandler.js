@@ -5,7 +5,7 @@ class ClassHandler extends AttributeHandler {
         let conditions = this.getClassConditions(attributeValue);
         for(let condition of conditions) {
             this.evaluate(component, element, condition.expression, condition.className)
-            let props = StormExpression.getExpressionMembers(condition.expression);
+            let props = BoltExpression.getExpressionMembers(condition.expression);
             for(let prop of props) {
                 component.bindings.on(prop, () => {
                     this.evaluate(component, element, condition.expression, condition.className)
@@ -16,7 +16,7 @@ class ClassHandler extends AttributeHandler {
     }
 
     evaluate(component, element, expression, className) {
-        let result = StormExpression.evaluate(expression, component);
+        let result = BoltExpression.evaluate(expression, component);
         if (result === true) { element.addClass(className); }
         else { element.removeClass(className); }
     }
@@ -37,5 +37,5 @@ class ClassHandler extends AttributeHandler {
 }
 
 (function() {
-    StormElementHandler.handlers.push(new ClassHandler());
+    BoltElementHandler.handlers.push(new ClassHandler());
 })();

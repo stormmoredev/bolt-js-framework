@@ -4,8 +4,8 @@ class Mounter
         if (component == null) return;
         if (component.init) component.init();
 
-        let elements = StormComponentFinder.findAttributes(component.element);
-        StormElementHandler.handle(component, elements);
+        let elements = BoltComponentFinder.findAttributes(component.element);
+        BoltElementHandler.handle(component, elements);
 
         this.installChildComponents(component);
 
@@ -17,8 +17,8 @@ class Mounter
     static mountComponentElement(component, element) {
         if (component == null) return;
 
-        let elements = StormComponentFinder.findAttributes(element);
-        StormElementHandler.handle(component, elements);
+        let elements = BoltComponentFinder.findAttributes(element);
+        BoltElementHandler.handle(component, elements);
 
         this.installChildComponents(component);
         
@@ -26,8 +26,8 @@ class Mounter
     }
 
     static installChildComponents(component) {
-        let elements = StormComponentFinder.find(component);
-        StormComponentInstantiator.instantiateChildComponent(component, elements);
+        let elements = BoltComponentFinder.find(component);
+        BoltComponentInstantiator.instantiateChildComponent(component, elements);
     }
 
     static #runPlugins(component, element) {

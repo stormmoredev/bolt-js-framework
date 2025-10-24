@@ -17,5 +17,5 @@ class SelectedHandler extends AttributeHandler {
 }
 
 (function() {
-    StormElementHandler.handlers.push(new SelectedHandler());
+    BoltElementHandler.handlers.push(new SelectedHandler());
 })();

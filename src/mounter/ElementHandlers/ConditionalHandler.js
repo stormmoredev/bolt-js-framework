@@ -3,7 +3,7 @@ class ConditionalHandler extends AttributeHandler {
         if (element.hasAttribute('x-if')) {
             const expression = element.getAttribute('x-if');
             this.onIfChangeAction(component, element, expression);
-            for(let prop of StormExpression.getExpressionMembers(expression)) {
+            for(let prop of BoltExpression.getExpressionMembers(expression)) {
                 component.bindings.on(prop, () => {
                     this.onIfChangeAction(component, element, expression);
                 });
@@ -13,7 +13,7 @@ class ConditionalHandler extends AttributeHandler {
     }
 
     onIfChangeAction(component, element, expression) {
-        const propertyValue = StormExpression.evaluate(expression, component);
+        const propertyValue = BoltExpression.evaluate(expression, component);
         if (propertyValue === true) {
             element.show();
         } else {
@@ -22,5 +22,5 @@ class ConditionalHandler extends AttributeHandler {
     }
 }
 (function() {
-    StormElementHandler.handlers.push(new ConditionalHandler());
+    BoltElementHandler.handlers.push(new ConditionalHandler());
 })();

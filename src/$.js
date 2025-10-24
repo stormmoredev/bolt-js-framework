@@ -50,8 +50,8 @@ $.getFromOptional = function(name, obj, def) {
 }
 
 $.app  = function() {
-    const elements = StormComponentFinder.find();
-    StormComponentInstantiator.instantiateAll(elements);
+    const elements = BoltComponentFinder.find();
+    BoltComponentInstantiator.instantiateAll(elements);
 }
 
 $.addPlugin = function(callback) {
@@ -69,7 +69,7 @@ $.new = function(...args) {
     }
 
     try {
-        let component = new StormComponent();
+        let component = new BoltComponent();
         component = new Proxy(component, component);
         args.shift();
         args.unshift(component)
@@ -89,7 +89,7 @@ $.newWithElement = function(name, element) {
         return;
     }
 
-    let component = new StormComponent();
+    let component = new BoltComponent();
     component.element = element;
     component = new Proxy(component, component);
     new $.components[name](component);

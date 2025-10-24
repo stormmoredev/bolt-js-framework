@@ -1,4 +1,4 @@
-class StormComponentInstantiator {
+class BoltComponentInstantiator {
     static instantiateAll(elements) {
         for(let element of elements) {
             const component = this.instantiate(element);
@@ -9,7 +9,7 @@ class StormComponentInstantiator {
     static instantiateChildComponent(component, elements) {
         for(let element of elements) {
             let childComponent;
-            let componentProp = component[StormComponentName.getComponentPropertyName(element)];
+            let componentProp = component[BoltComponentName.getComponentPropertyName(element)];
             if (componentProp) {
                 childComponent = componentProp;
                 childComponent.element = element;
@@ -22,7 +22,7 @@ class StormComponentInstantiator {
     }
 
     static instantiate(element) {
-        let name = StormComponentName.getComponentName(element);
+        let name = BoltComponentName.getComponentName(element);
         let component = $.newWithElement(name, element);
         let props = element.getAttribute("x-init");
         if (props) {

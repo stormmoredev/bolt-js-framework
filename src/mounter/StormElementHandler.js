@@ -1,4 +1,4 @@
-class StormElementHandler
+class BoltElementHandler
 {
     /**
      * @type {[AttributeHandler]}
@@ -6,8 +6,8 @@ class StormElementHandler
     static handlers = [];
 
     /**
-     * @param {StormComponent }component
-     * @param {StormElement[]} nodes
+     * @param {BoltComponent }component
+     * @param {BoltElement[]} nodes
      */
     static handle(component, elements) {
         for (const node of elements) {
